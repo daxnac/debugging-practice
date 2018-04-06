@@ -34,7 +34,9 @@ window.onload = function(){
 // clears content in form fields, prints courseList objects to the page.
 // BUGFIX: This function isn't working properly- nothing gets output to the list on form submit
 function addACourse(){
+  event.preventDefault()
   var grade = parseFloat(this.elements["grade"].value);
+  console.log("grade: ", grade)
   /*
     TODO: validate that "grade" value is a number between 1.0 and 4.0, stop processing if it is not.
 
@@ -46,15 +48,16 @@ function addACourse(){
 
   // Create the new course with values from the form, push it into array of courses.
   var newCourse = {
+    
     name: this.elements["name"].value,
     grade: grade
   }
-
-  courseList.push(newCourse)
-
-  clearFormFields()
-  outputList()
+    courseList.push(newCourse)
+    console.log("courselist: ", courseList)
+    clearFormFields()
+    outputList()
 }
+
 
 // Calculate the average of "grade" attribute for all objects in courseList array
 // and print it in friendly message to page text.
@@ -76,7 +79,8 @@ function clearGPA(){
 
 // Clears content in form fields.
 function clearFormFields(){
-  // TODO: implement this function.
+   document.course.name.value = ""
+   document.course.grade.value = ""
 }
 
 // Clear out list of courses and all content shown on the page
@@ -89,9 +93,68 @@ function clearData(){
 // Prints courseList objects to the page in a readable way.
 function outputList(){
   var list = document.getElementById("course-list");
+  list.innerHTML = ""
+  
+  for(var i=0; i<courseList.length; i++) {
+    console.log("name: ", courseList[i].name, "grade: ", courseList[i].grade)
+    
+    var newLi = document.createElement("li")
+    newLi.innerHTML = "name: " + courseList[i].name + "grade: " + courseList[i].grade
+    
+    list.appendChild(newLi)
+  
   /*
     TODO: Clear the existing contents of the "list" element. Then, for each object in courseList,
     create an li element that holds the course's name and grade, and append
     it to the "list" ul element.
   */
 }
+}
+
+
+//// Review Script
+//
+//
+//var container = document.getElementById('fortune-container')
+//var small = document.querySelector('small')
+//
+//console.log(container)
+//
+//var forms = document.getElementsByTagName("form")
+//
+//small.style.color = "blue"
+//
+//function ansQ() {
+//  event.preventDefault()
+//  var q = document.qForm.question.value
+//  console.log("So you want to know " + q)
+//  
+//  var rando = Math.floor(Math.random() * answers.length)
+//  
+//  var ans = answers[rando]
+//  console.log(ans)
+//  container.innerHTML = ans
+//  document.qForm.question.value = ""
+//}
+//
+//function addAns() {
+//  event.preventDefault()
+//  var a = document.aForm.answer.value
+//  var i = answers.indexOf(a)
+//  
+//if (i == -1) {
+//  answers.push(a)
+//  console.log(answers.length)
+//} else {
+//  console.log("Already Exists")
+//}
+//  document.aForm.answer.value = ""
+//}
+//
+//function getMagic(message) {
+//  // get img set its alt to be sillier
+//  var img = document.querySelector('img')
+//  im.setAttribute('alt','so magic!!')
+//  console.log("Magic! " + message)
+//  ansQ()
+//}
