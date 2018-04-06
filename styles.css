@@ -1,7 +1,7 @@
 body {
   background-color: papayawhip;
   color: maroon;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: "Palatino Linotype", "Book Antiqua", "Palatino serif";
   padding: 0 2rem;
 }
 
@@ -22,9 +22,9 @@ button {
 }
 
 h3 {
-  padding-top: 1;
+  padding-top: 1rem;
   margin-top: 3rem;
-  border-top: solid 1px maron;
+  border-top: solid 1px maroon;
 }
 
 button, input[type="submit"] {
